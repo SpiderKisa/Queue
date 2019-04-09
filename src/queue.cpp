@@ -90,10 +90,10 @@ int Queue::length() {
         return 0;
     }
     if (head < tail){
-        return (tail - head + 1);
+        return (tail - head);
     }
     if (head > tail){
-        return (tail + (size - head - 1));
+        return (tail + size - head);
     }
 }
 

@@ -4,12 +4,15 @@
 using namespace std;
 
 int main() {
-    Queue q(5);
+    Queue q(10);
     for (int i = 0; i < 5; i++){
         q.push(i);
-    } for (int i = 0; i < 5; i++){
-        cout << q.read() << endl;
+    }
+    for (int i = 0; i < 5; i++){
+        cout << q.length()<<endl;
         q.pop();
+        q.push(i);
+        q.push(i);
     }
     q.read();
     q.pop();
