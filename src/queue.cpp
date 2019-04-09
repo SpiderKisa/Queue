@@ -44,6 +44,7 @@ Queue& Queue::operator=(const Queue &q) {
         }
         head = 0;
         tail = i;
+        return *this;
     }
     if (size < q.size){
         i = 0;
@@ -55,13 +56,15 @@ Queue& Queue::operator=(const Queue &q) {
         }
         head = 0;
         tail = i;
+        return *this;
     }
     if (size == q.size){
         for (i = 0; i < size; queue[i] = q.queue[i], i++);
         head = q.head;
         tail = q.tail;
+        return *this;
     }
-    return *this;
+
 }
 
 
