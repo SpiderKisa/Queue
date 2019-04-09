@@ -1,7 +1,5 @@
 #include <iostream>
 #include "queue.h"
-#define FULL 1
-
 
 
 Queue::Queue(int size) {
@@ -12,12 +10,17 @@ Queue::Queue(int size) {
     }
     head = 0;
     tail = 0;
-    queue = new int [this->size];
+    queue = new unsigned int [this->size];
 }
 
 
 Queue::Queue(const Queue &q): size(q.size), head(q.head), tail(q.tail) {
-    queue = new int [size];
+    queue = new unsigned int [size];
+    int  current(head);
+    while (current != tail){
+        queue[current] = q.queue[current];
+        current = (current + 1) % size;
+    }
 }
 
 
@@ -37,13 +40,10 @@ Queue& Queue::operator=(const Queue &q) {
         while (current != q.tail){
             queue[i] = q.queue[current];
             i++;
-            current++;
-            if (current == q.size - 1){
-                current = 0;
-            }
+            current = (current + 1) % q.size;
         }
         head = 0;
-        tail = i + 1;
+        tail = i;
     }
     if (size < q.size){
         i = 0;
@@ -51,13 +51,10 @@ Queue& Queue::operator=(const Queue &q) {
         while (i < size - 1 && current != q.tail){
             queue[i] = q.queue[current];
             i++;
-            current++;
-            if (current == q.size - 1){
-                current = 0;
-            }
+            current = (current + 1) % q.size;
         }
         head = 0;
-        tail = i + 1;
+        tail = i;
     }
     if (size == q.size){
         for (i = 0; i < size; queue[i] = q.queue[i], i++);
@@ -69,21 +66,22 @@ Queue& Queue::operator=(const Queue &q) {
 
 
 int Queue::push (int element){
-    if ((head == size - 1 && tail == 1) || (head == tail + 2) || (head == size - 2 && tail == 0)){
-        return FULL;
+    if ((tail + 1) % size == head){
+        return -1;
     }
     queue[tail] = element;
-    if (tail < size - 1){
-        tail++;
-    }
-    if (tail == size - 1){
-        tail = 0;
-    }
+    tail = (tail + 1) % size;
+    return 0;
 }
 
 
-int Queue::pop() { // ЧТО ВОЗВРАЩАТЬ, КОГДА ОЧЕРЕДЬ ПУСТА?
-
+int Queue::pop() {
+    if (head == tail){
+        return -1;
+    }
+    int element = queue[head];
+    head = (head + 1) % size;
+    return element;
 }
 
 
@@ -99,17 +97,18 @@ int Queue::length() {
     }
 }
 
-int Queue::read() { // ЧТО ВОЗВРАЩАТЬ, КОГДА ОЧЕРЕДЬ ПУСТА?
+int Queue::read() {
+    if (head == tail){
+        return -1;
+    }
+    return queue[head];
 }
 
 void Queue::print() {
-    int current = head;
+    int  current(head);
     while (current != tail){
         printf("%d ", queue[current]);
-        current++;
-        if (current == size - 1){
-            current = 0;
-        }
+        current = (current + 1) % size;
     }
     printf("\n");
 }

@@ -9,11 +9,7 @@
 /cygdrive/c/Users/super hacka/Desktop/structures/cycle queue/Queue/main.cpp
 iostream
 -
-
-/cygdrive/c/Users/super hacka/Desktop/structures/cycle queue/Queue/src/queue.cpp
-iostream
--
-queue.h
+src/queue.h
 /cygdrive/c/Users/super hacka/Desktop/structures/cycle queue/Queue/src/queue.h
 
 /cygdrive/c/Users/super hacka/Desktop/structures/cycle queue/Queue/src/queue.h

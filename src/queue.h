@@ -3,7 +3,7 @@
 
 
 class Queue {
-    int *queue;
+    unsigned int *queue;
     int head;
     int tail;
     int size;
