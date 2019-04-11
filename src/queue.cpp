@@ -33,9 +33,8 @@ Queue& Queue::operator=(const Queue &q) {
     if (this == &q){
         return *this;
     }
-    int i, current;
+    int i(0), current;
     if (size > q.size){
-        i = 0;
         current = q.head;
         while (current != q.tail){
             queue[i] = q.queue[current];
@@ -47,7 +46,6 @@ Queue& Queue::operator=(const Queue &q) {
         return *this;
     }
     if (size < q.size){
-        i = 0;
         current = q.head;
         while (i < size - 1 && current != q.tail){
             queue[i] = q.queue[current];
@@ -68,7 +66,7 @@ Queue& Queue::operator=(const Queue &q) {
 }
 
 
-int Queue::push (int element){
+int Queue::push (unsigned int element){
     if ((tail + 1) % size == head){
         return -1;
     }

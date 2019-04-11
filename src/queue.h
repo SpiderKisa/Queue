@@ -17,7 +17,7 @@ public:
 
     Queue& operator=(const Queue &q);
 
-    int push (int element);
+    int push (unsigned int element);
 
     int pop();
 
